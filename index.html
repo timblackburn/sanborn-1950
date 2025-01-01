@@ -25,7 +25,7 @@
 </head>
 <body>
   <div id="sliders">
-    <label>Current:</label><input id="slider1" type="range" min="0" max="1" step="0.1" value="1" oninput="osm.setOpacity(this.value)"><br/>
+    <label>Current:</label><input id="slider1" type="range" min="0" max="1" step="0.1" value=".5" oninput="osm.setOpacity(this.value)"><br/>
     <label>1911:</label><input id="slider2" type="range" min="0" max="1" step="0.1" value="1" oninput="sanborn1911.setOpacity(this.value)"><br/>
     <label>1950:</label><input id="slider3" type="range" min="0" max="1" step="0.1" value="0" oninput="sanborn1950.setOpacity(this.value)">
     <!--<label>Main:</label><input id="slider4" type="range" min="0" max="1" step="0.1" value="1" oninput="sanborn1950.setOpacity(this.value)">-->
@@ -37,9 +37,10 @@
     L.control.attribution({prefix: false}).addTo(map);
 
     var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{minZoom: 12, maxZoom: 20, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
-
+    osm.setOpacity(.5);
+    
     var sanborn1950 = L.tileLayer('https://timblackburn.github.io/sanborn-1950/{z}/{x}/{y}.png', {minZoom: 12, maxZoom: 20, tms: false, attribution: 'Created by QGIS'}).addTo(map);
-sanborn1950.setOpacity(0);
+    sanborn1950.setOpacity(0);
 
     var sanborn1911 = L.tileLayer('https://timblackburn.github.io/sanborn-1911/{z}/{x}/{y}.png', {minZoom: 12, maxZoom: 20, tms: false, attribution: 'Created by QGIS'}).addTo(map);
 

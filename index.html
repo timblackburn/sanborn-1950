@@ -2,16 +2,47 @@
   <title>Leaflet preview</title>
   <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"integrity="sha384-o/2yZuJZWGJ4s/adjxVW71R+EO/LyCwdQfP5UWSgX/w87iiTXuvDZaejd3TsN7mf"crossorigin=""/>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"integrity="sha384-okbbMvvx/qfQkmiQKfd5VifbKZ/W8p1qIsWvE1ROPUfHWsDcC8/BnHohF7vPg2T6"crossorigin=""></script>
   <style type="text/css">
-    body {margin: 0;padding: 0;} html, body, #map{width: 100%;height: 100%;}</style>
+    body {margin: 0;padding: 0;} html, body, #map{width: 100%;height: 100%;}
+    #map { position:absolute; top:0; bottom:0; width:100%; z-index: 1; }
+    #sliders{ position: absolute; padding:10px; top: 10px; right: 10px; z-index: 5;  background: rgba(225, 225, 225, .8)}
+    body {
+     font-family: Arial, sans-serif; /* Choose a font like Arial, with a fallback to a generic sans-serif font if not available */
+     font-size: 14px; /* Set the text size */
+     line-height: 2; /* Adjust line spacing  */
+   }
+    label {
+     width: 50px;
+     display: inline-block;
+    }
+
+    }
+</style>
+
 </head>
 <body>
+  <div id="sliders">
+    <label>Current:</label><input id="slider1" type="range" min="0" max="1" step="0.1" value="1" oninput="osm.setOpacity(this.value)"><br/>
+    <label>1911:</label><input id="slider2" type="range" min="0" max="1" step="0.1" value="1" oninput="sanborn1911.setOpacity(this.value)"><br/>
+    <label>1950:</label><input id="slider3" type="range" min="0" max="1" step="0.1" value="0" oninput="sanborn1950.setOpacity(this.value)">
+    <!--<label>Main:</label><input id="slider4" type="range" min="0" max="1" step="0.1" value="1" oninput="sanborn1950.setOpacity(this.value)">-->
+  </div>
   <div id="map"></div>
   <script>
-    var map = L.map('map', {attributionControl: false}).setView([41.6882, -87.6698], 16);
+
+    var map = L.map('map', {attributionControl: false}).setView([41.69219, -87.66683], 16);
     L.control.attribution({prefix: false}).addTo(map);
-    var osm_layer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{minZoom: 12, maxZoom: 20, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
-    var tilesource_layer = L.tileLayer('https://timblackburn.github.io/sanborn-1950/{z}/{x}/{y}.png', {minZoom: 12, maxZoom: 20, tms: false, attribution: 'Created by QGIS'}).addTo(map);</script>
+
+    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{minZoom: 12, maxZoom: 20, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+    var sanborn1950 = L.tileLayer('https://timblackburn.github.io/sanborn-1950/{z}/{x}/{y}.png', {minZoom: 12, maxZoom: 20, tms: false, attribution: 'Created by QGIS'}).addTo(map);
+sanborn1950.setOpacity(0);
+
+    var sanborn1911 = L.tileLayer('https://timblackburn.github.io/sanborn-1911/{z}/{x}/{y}.png', {minZoom: 12, maxZoom: 20, tms: false, attribution: 'Created by QGIS'}).addTo(map);
+
+</script>
 </body>
 </html>

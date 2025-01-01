@@ -15,7 +15,7 @@
      line-height: 2; /* Adjust line spacing  */
    }
     label {
-     width: 65px;
+     width: 80px;
      display: inline-block;
     }
 
@@ -26,7 +26,7 @@
 <body>
   <div id="sliders">
     <label>Current:</label><input id="slider1" type="range" min="0" max="1" step="0.1" value=".5" oninput="osm.setOpacity(this.value)"><br/>
-    <label>1911 (<a href="https://timblackburn.github.io/sanborn-1950/sanborn-key-MP-1911.jpg">key</a>):</label><input id="slider2" type="range" min="0" max="1" step="0.1" value="1" oninput="sanborn1911.setOpacity(this.value)"><br/>
+    <label>1911 (<a href="https://timblackburn.github.io/sanborn-1911/sanborn-key-MP-1911.jpg">key</a>):</label><input id="slider2" type="range" min="0" max="1" step="0.1" value="1" oninput="sanborn1911.setOpacity(this.value)"><br/>
     <label>1950 (<a href="https://timblackburn.github.io/sanborn-1950/sanborn-key-MP-1950.jpg">key</a>):</label><input id="slider3" type="range" min="0" max="1" step="0.1" value="0" oninput="sanborn1950.setOpacity(this.value)">
     <!--<label>Main:</label><input id="slider4" type="range" min="0" max="1" step="0.1" value="1" oninput="sanborn1950.setOpacity(this.value)">-->
   </div>

@@ -26,8 +26,9 @@
 <body>
   <div id="sliders">
     <label>Current:</label><input id="slider1" type="range" min="0" max="1" step="0.1" value=".5" oninput="osm.setOpacity(this.value)"><br/>
-    <label>1911 (<a href="https://timblackburn.github.io/sanborn-1911/sanborn-key-MP-1911.jpg">key</a>):</label><input id="slider2" type="range" min="0" max="1" step="0.1" value="1" oninput="sanborn1911.setOpacity(this.value)"><br/>
-    <label>1950 (<a href="https://timblackburn.github.io/sanborn-1950/sanborn-key-MP-1950.jpg">key</a>):</label><input id="slider3" type="range" min="0" max="1" step="0.1" value="0" oninput="sanborn1950.setOpacity(this.value)">
+    <label>1938 aerial:</label><input id="slider2" type="range" min="0" max="1" step="0.1" value=".5" oninput="osm.setOpacity(this.value)"><br/>
+    <label>1911 (<a href="https://timblackburn.github.io/sanborn-1911/sanborn-key-MP-1911.jpg">key</a>):</label><input id="slider3" type="range" min="0" max="1" step="0.1" value="1" oninput="sanborn1911.setOpacity(this.value)"><br/>
+    <label>1950 (<a href="https://timblackburn.github.io/sanborn-1950/sanborn-key-MP-1950.jpg">key</a>):</label><input id="slider4" type="range" min="0" max="1" step="0.1" value="0" oninput="sanborn1950.setOpacity(this.value)">
     <!--<label>Main:</label><input id="slider4" type="range" min="0" max="1" step="0.1" value="1" oninput="sanborn1950.setOpacity(this.value)">-->
   </div>
   <div id="map"></div>
@@ -38,6 +39,9 @@
 
     var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{minZoom: 12, maxZoom: 20, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
     osm.setOpacity(.5);
+
+    var aerial1938 = L.tileLayer('https://timblackburn.github.io/aerial-1938/{z}/{x}/{y}.png',{minZoom: 12, maxZoom: 20, attribution: '<a ahref="https://clearinghouse.isgs.illinois.edu/data/imagery/1937-1947-illinois-historical-aerial-photography">Illinois Historical Aerial Photography</a>'}).addTo(map);
+    osm.setOpacity(0);
     
     var sanborn1950 = L.tileLayer('https://timblackburn.github.io/sanborn-1950/{z}/{x}/{y}.png', {minZoom: 12, maxZoom: 20, tms: false, attribution: 'Sanborn Fire Insurance Maps (<a href="https://www.loc.gov/resource/g4104cm.g017901911H/?st=gallery">1911</a>, <a href="https://www.loc.gov/resource/g4104cm.g017901950a49/?st=gallery">1950</a>)'}).addTo(map);
     sanborn1950.setOpacity(0);
